@@ -1,3 +1,3 @@
 package fabrica;
 
-public enum OrLija { Norte, Sur }
+public enum OrLija { Norte, Sur, Este, Oeste }
