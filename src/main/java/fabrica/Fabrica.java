@@ -1,9 +1,19 @@
 package fabrica;
 
+import java.util.List;
+
 public class Fabrica {
-    public enum Posicion {
-        IzSu, CeSu, DeSu,
-        IzCe, CeCe, DeCe,
-        IzIn, CeIn, DeIn }
-    public enum Grosor { Fino, Medio, Grueso}
+
+
+    public Fabrica() {
+
+    }
+
+    public List<Maquina> maquinas() {
+        return null;
+    }
+
+    public Fabrica aleatoria(int n) {
+        return null;
+    }
 }
