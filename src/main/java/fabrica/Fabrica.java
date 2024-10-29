@@ -1,5 +1,7 @@
 package fabrica;
 
+import maquina.Maquina;
+
 import java.util.List;
 import java.util.Random;
 

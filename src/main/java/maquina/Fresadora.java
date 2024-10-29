@@ -1,4 +1,9 @@
-package fabrica;
+package maquina;
+
+import fabrica.Grosor;
+import fabrica.OrFresa;
+import fabrica.Pieza;
+import fabrica.Posicion;
 
 import java.util.List;
 import static fabrica.Posicion.*;
@@ -21,12 +26,14 @@ public class Fresadora implements Maquina {
     }
     ///Permite saber si la casilla sobre la que se actua es válida.
     /// @return 'true' si es una casilla permitida 'false' si no.
-    private boolean casillaValida(Posicion pos){
+    @Override
+    public boolean casillaValida(Posicion pos){
         return List.of(IzSu, IzCe, IzIn, CeSu, CeCe).contains(pos);
     }
     ///Permite saber si la orientación es válida o no.
     /// @return 'true' si es una orientación permitida 'false' si no.
-    private boolean orientacionValida(OrFresa pos){
+    //@Override
+    public boolean orientacionValida(OrFresa pos){
         return List.of(Diagonal, Vertical).contains(pos);
     }
 
