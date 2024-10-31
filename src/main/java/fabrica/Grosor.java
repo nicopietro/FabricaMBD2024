@@ -1,3 +1,3 @@
 package fabrica;
 
-public enum Grosor { Fino, Medio, Grueso}
+public enum Grosor { SinGrosor, Fino, Medio, Grueso}

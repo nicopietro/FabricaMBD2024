@@ -1,3 +1,3 @@
 package fabrica;
 
-public enum Sentido {Horaria, Antihoraria}
+public enum Sentido {Horario, Antihorario}
