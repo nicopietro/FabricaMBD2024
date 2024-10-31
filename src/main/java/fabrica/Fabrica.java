@@ -55,5 +55,9 @@ public class Fabrica {
             m.actua(pieza);
         }
     }
+    @Override
+    public String toString(){
+        return pieza.toString();
+    }
 
 }

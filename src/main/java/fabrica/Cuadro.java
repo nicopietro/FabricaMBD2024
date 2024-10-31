@@ -99,7 +99,7 @@ public class Cuadro {
         else resultado+="   ";
         if(getTL()!=Grosor.SinGrosor) resultado+="TL"+grosorAString(getLN());
         else resultado+="   ";
-        return resultado+="|";
+        return resultado;
     }
     public String grosorAString(Grosor g){
         if (Grosor.Fino == g)return "1";
