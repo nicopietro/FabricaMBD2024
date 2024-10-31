@@ -1,10 +1,13 @@
-package maquina;
+package fabrica.maquinas;
 
 import fabrica.*;
+import fabrica.marcas.Grosor;
+import fabrica.marcas.OrFresa;
+import fabrica.marcas.Posicion;
+
 import java.util.List;
 
-import static fabrica.OrFresa.*;
-import static fabrica.Posicion.*;
+import static fabrica.marcas.OrFresa.*;
 
 public class Fresadora implements Maquina {
     private Posicion posActua;

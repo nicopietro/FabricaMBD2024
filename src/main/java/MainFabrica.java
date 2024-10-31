@@ -1,7 +1,8 @@
 import fabrica.*;
-import maquina.*;
+import fabrica.maquinas.*;
+import fabrica.marcas.Grosor;
+import fabrica.marcas.Posicion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainFabrica {

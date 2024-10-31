@@ -1,5 +1,9 @@
 package fabrica;
 
+import fabrica.marcas.Grosor;
+import fabrica.marcas.Posicion;
+import fabrica.marcas.Sentido;
+
 public class Cuadro {
     private Posicion posicion;
     private Grosor LN, LS, LE, LO, FV, FH, FD, FI, TL;

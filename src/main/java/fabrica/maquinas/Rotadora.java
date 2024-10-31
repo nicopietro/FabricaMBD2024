@@ -1,6 +1,8 @@
-package maquina;
+package fabrica.maquinas;
 
 import fabrica.*;
+import fabrica.marcas.Posicion;
+import fabrica.marcas.Sentido;
 
 public class Rotadora implements Maquina {
 

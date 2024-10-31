@@ -1,4 +1,5 @@
 import fabrica.*;
+import fabrica.marcas.*;
 import fabrica.posiciones.*;
 import gui.Gui;
 import fabrica.maquinas.Fresadora;

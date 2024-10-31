@@ -1,5 +1,6 @@
 import fabrica.*;
 import fabrica.maquinas.Taladradora;
+import fabrica.marcas.*;
 import fabrica.posiciones.*;
 import gui.Gui;
 import fabrica.Fabrica;

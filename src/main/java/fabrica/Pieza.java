@@ -1,6 +1,6 @@
 package fabrica;
 
-import maquina.Maquina;
+import fabrica.marcas.Posicion;
 
 import java.util.ArrayList;
 import java.util.Iterator;

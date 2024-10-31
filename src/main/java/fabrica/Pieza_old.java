@@ -1,5 +1,8 @@
 package fabrica;
 
+import fabrica.marcas.Grosor;
+import fabrica.marcas.Posicion;
+
 public class Pieza_old {
     private record Marca(boolean existe, Grosor grosor) {};
 

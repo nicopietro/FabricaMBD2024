@@ -1,6 +1,7 @@
 package fabrica;
 
-import maquina.*;
+import fabrica.maquinas.*;
+import fabrica.marcas.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class Fabrica {
         return null;
     }
 
-    /// Cada maquina actua en el orden de la lista en la pieza
+    /// Cada fabrica.maquina actua en el orden de la lista en la pieza
     public void ejecutar() {
         for (Maquina m : maquinas) {
             m.actua(pieza);

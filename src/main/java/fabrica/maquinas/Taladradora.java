@@ -1,7 +1,8 @@
-package maquina;
+package fabrica.maquinas;
 
 import fabrica.*;
-import java.util.List;
+import fabrica.marcas.Grosor;
+import fabrica.marcas.Posicion;
 
 public class Taladradora implements Maquina {
 
