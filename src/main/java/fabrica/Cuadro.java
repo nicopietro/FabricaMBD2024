@@ -78,6 +78,34 @@ public class Cuadro {
                 case Posicion.IzCe -> setPosicion(Posicion.CeIn);
             }
     }
+    @Override
+    public String toString(){
+        String resultado = "|";
+        if(getLN()!=Grosor.SinGrosor) resultado+="LN"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getLE()!=Grosor.SinGrosor) resultado+="LE"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getLS()!=Grosor.SinGrosor) resultado+="LS"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getLO()!=Grosor.SinGrosor) resultado+="LO"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getFV()!=Grosor.SinGrosor) resultado+="FV"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getFH()!=Grosor.SinGrosor) resultado+="FH"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getFI()!=Grosor.SinGrosor) resultado+="FI"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getFD()!=Grosor.SinGrosor) resultado+="FD"+grosorAString(getLN());
+        else resultado+="   ";
+        if(getTL()!=Grosor.SinGrosor) resultado+="TL"+grosorAString(getLN());
+        else resultado+="   ";
+        return resultado+="|";
+    }
+    public String grosorAString(Grosor g){
+        if (Grosor.Fino == g)return "1";
+        else if (Grosor.Medio == g)return "2";
+        else return "3";
+    }
 
     public void setPosicion(Posicion posicion) {
         this.posicion = posicion;

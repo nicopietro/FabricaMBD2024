@@ -11,8 +11,8 @@ public class Pieza {
     private List<Cuadro> pieza;
 
     public Pieza() {
+        pieza = new ArrayList<>();
         for (Posicion pos : Posicion.values()) {
-            pieza = new ArrayList<>();
             pieza.add(new Cuadro(pos));
         }
     }
@@ -25,4 +25,12 @@ public class Pieza {
         }
         throw new RuntimeException("No se encontró ningún cuadro");
     }
+    public List<String> toStringNuevo(){
+        List<String> lista = new ArrayList<>();
+        lista.add(getCuadro(Posicion.IzSu).toString() + getCuadro(Posicion.CeSu) + getCuadro(Posicion.DeSu));
+        lista.add(getCuadro(Posicion.IzCe).toString() + getCuadro(Posicion.CeCe) + getCuadro(Posicion.DeCe));
+        lista.add(getCuadro(Posicion.IzIn).toString() + getCuadro(Posicion.CeIn) + getCuadro(Posicion.DeIn));
+        return lista;
+    }
+
 }

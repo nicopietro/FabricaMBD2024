@@ -14,17 +14,14 @@ public class Fresadora implements Maquina {
     /// @param pos posicón sobre la que se quiere actuar (debe de ser válida)
     /// @param gr Grosor de la fresadora que se quiere implementar
     /// @param of Orientación de la marca que se quiere hacer
+    /// @throws IllegalArgumentException Si se quiere actuar la fresadora sobre una posición
+    /// fuera del alcance o si la orientación no es diagonal derecha o vertical
     public Fresadora(Posicion pos, OrFresa of, Grosor gr) {
         if (!casillaValida(pos)) throw new IllegalArgumentException("Solo se puede actuar en las casillas IzSu, IzCe, IzIn, CeSu o CeCe");
         if (!orientacionValida(of)) throw new IllegalArgumentException("Solo se puede actuar en la orientación diagonal derecha o vertical");
         posActua = pos;
         orientacion = of;
         grosor = gr;
-    }
-    ///Permite saber si la casilla sobre la que se actua es válida.
-    /// @return 'true' si es una casilla permitida 'false' si no.
-    private boolean casillaValida(Posicion pos){
-        return List.of(IzSu, IzCe, IzIn, CeSu, CeCe).contains(pos);
     }
 
     ///Permite saber si la orientación es válida o no.
@@ -34,7 +31,8 @@ public class Fresadora implements Maquina {
         return List.of(Diagonal, Vertical).contains(pos);
     }
 
-    /// TODO
+    /// Permite aplicar una fresadora a una pieza
+    /// @param pieza Pieza sobre la que se quiere actuar
     @Override
     public void actua(Pieza pieza) {
         Cuadro c = pieza.getCuadro(posActua);
