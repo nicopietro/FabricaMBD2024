@@ -4,21 +4,27 @@ import fabrica.marcas.Grosor;
 import fabrica.marcas.Posicion;
 import fabrica.marcas.Sentido;
 
+import static fabrica.marcas.Sentido.*;
+import static fabrica.marcas.Grosor.*;
+import static fabrica.marcas.Posicion.*;
+
 public class Cuadro {
+
     private Posicion posicion;
     private Grosor LN, LS, LE, LO, FV, FH, FD, FI, TL;
 
+    /// Crea un nuevo cuadro de la pieza vacío.
     public Cuadro(Posicion pos) {
         posicion = pos;
-        LN = Grosor.SinGrosor;
-        LS = Grosor.SinGrosor;
-        LE = Grosor.SinGrosor;
-        LO = Grosor.SinGrosor;
-        FV = Grosor.SinGrosor;
-        FH = Grosor.SinGrosor;
-        FD = Grosor.SinGrosor;
-        FI = Grosor.SinGrosor;
-        TL = Grosor.SinGrosor;
+        LN = SinGrosor;
+        LS = SinGrosor;
+        LE = SinGrosor;
+        LO = SinGrosor;
+        FV = SinGrosor;
+        FH = SinGrosor;
+        FD = SinGrosor;
+        FI = SinGrosor;
+        TL = SinGrosor;
     }
 
 
@@ -28,32 +34,32 @@ public class Cuadro {
     }
 
     /// REVISAR!!!!
-    /// Cambiar por setters que para eso los hice
+    /// Cambiar por setters que para eso los hice -> CAMBIADO YA
     private void rotarMarcas(Sentido sentido) {
-        Grosor gAux = Grosor.SinGrosor;
-        // Las lijas giran de forma dependiente al sentido
-        if (sentido == Sentido.Horario)
+        Grosor gAux;
+        // Lija
+        if (sentido == Horario)
         {
             gAux = LN;
-            LN = LE;
-            LE = LS;
-            LS = LO;
-            LO = gAux;
-        }
-        else {
+            setLN(LE);
+            setLE(LS);
+            setLS(LO);
+            setLO(gAux);
+        }else {
             gAux = LN;
-            LN = LO;
-            LO = LS;
-            LS = LE;
-            LO = gAux;
+            setLN(LO);
+            setLO(LS);
+            setLS(LE);
+            setLE(gAux);
         }
-        // Todo lo demas gira independientemente al sentido
+        // Independientemente al sentido ?????????
+        // Fresadora
         gAux = FV;
-        FV = FH;
-        FH = gAux;
+        setFV(FH);
+        setFH(gAux);
         gAux = FD;
-        FD = FI;
-        FI = gAux;
+        setFD(FI);
+        setFI(gAux);
     }
 
 
@@ -61,47 +67,47 @@ public class Cuadro {
     private void rotarPosicion(Sentido sentido) {
         if (sentido == Sentido.Horario)
             switch (posicion) {
-                case Posicion.IzSu -> setPosicion(Posicion.DeSu);
-                case Posicion.CeSu -> setPosicion(Posicion.DeCe);
-                case Posicion.DeSu -> setPosicion(Posicion.DeIn);
-                case Posicion.DeCe -> setPosicion(Posicion.CeIn);
-                case Posicion.DeIn -> setPosicion(Posicion.IzIn);
-                case Posicion.CeIn -> setPosicion(Posicion.IzCe);
-                case Posicion.IzIn -> setPosicion(Posicion.IzSu);
-                case Posicion.IzCe -> setPosicion(Posicion.CeSu);
+                case IzSu -> setPosicion(DeSu);
+                case CeSu -> setPosicion(DeCe);
+                case DeSu -> setPosicion(DeIn);
+                case DeCe -> setPosicion(CeIn);
+                case DeIn -> setPosicion(IzIn);
+                case CeIn -> setPosicion(IzCe);
+                case IzIn -> setPosicion(IzSu);
+                case IzCe -> setPosicion(CeSu);
             }
         else
             switch (posicion) {
-                case Posicion.IzSu -> setPosicion(Posicion.IzIn);
-                case Posicion.CeSu -> setPosicion(Posicion.IzCe);
-                case Posicion.DeSu -> setPosicion(Posicion.IzSu);
-                case Posicion.DeCe -> setPosicion(Posicion.CeSu);
-                case Posicion.DeIn -> setPosicion(Posicion.DeSu);
-                case Posicion.CeIn -> setPosicion(Posicion.DeCe);
-                case Posicion.IzIn -> setPosicion(Posicion.DeIn);
-                case Posicion.IzCe -> setPosicion(Posicion.CeIn);
+                case IzSu -> setPosicion(IzIn);
+                case CeSu -> setPosicion(IzCe);
+                case DeSu -> setPosicion(IzSu);
+                case DeCe -> setPosicion(CeSu);
+                case DeIn -> setPosicion(DeSu);
+                case CeIn -> setPosicion(DeCe);
+                case IzIn -> setPosicion(DeIn);
+                case IzCe -> setPosicion(CeIn);
             }
     }
     @Override
     public String toString(){
         String resultado = "|";
-        if(getLN()!=Grosor.SinGrosor) resultado+="LN"+grosorAString(getLN());
+        if(getLN()!=SinGrosor) resultado+="LN"+grosorAString(getLN());
         else resultado+="   ";
-        if(getLE()!=Grosor.SinGrosor) resultado+="LE"+grosorAString(getLN());
+        if(getLE()!=SinGrosor) resultado+="LE"+grosorAString(getLN());
         else resultado+="   ";
-        if(getLS()!=Grosor.SinGrosor) resultado+="LS"+grosorAString(getLN());
+        if(getLS()!=SinGrosor) resultado+="LS"+grosorAString(getLN());
         else resultado+="   ";
-        if(getLO()!=Grosor.SinGrosor) resultado+="LO"+grosorAString(getLN());
+        if(getLO()!=SinGrosor) resultado+="LO"+grosorAString(getLN());
         else resultado+="   ";
-        if(getFV()!=Grosor.SinGrosor) resultado+="FV"+grosorAString(getLN());
+        if(getFV()!=SinGrosor) resultado+="FV"+grosorAString(getLN());
         else resultado+="   ";
-        if(getFH()!=Grosor.SinGrosor) resultado+="FH"+grosorAString(getLN());
+        if(getFH()!=SinGrosor) resultado+="FH"+grosorAString(getLN());
         else resultado+="   ";
-        if(getFI()!=Grosor.SinGrosor) resultado+="FI"+grosorAString(getLN());
+        if(getFI()!=SinGrosor) resultado+="FI"+grosorAString(getLN());
         else resultado+="   ";
-        if(getFD()!=Grosor.SinGrosor) resultado+="FD"+grosorAString(getLN());
+        if(getFD()!=SinGrosor) resultado+="FD"+grosorAString(getLN());
         else resultado+="   ";
-        if(getTL()!=Grosor.SinGrosor) resultado+="TL"+grosorAString(getLN());
+        if(getTL()!=SinGrosor) resultado+="TL"+grosorAString(getLN());
         else resultado+="   ";
         return resultado;
     }
@@ -111,10 +117,16 @@ public class Cuadro {
         else return "3";
     }
 
+    // Posicion
     public void setPosicion(Posicion posicion) {
         this.posicion = posicion;
     }
 
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    // Setters
     public void setLN(Grosor LN) {
         this.LN = LN;
     }
@@ -151,10 +163,7 @@ public class Cuadro {
         this.TL = TL;
     }
 
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
+    // Getters
     public Grosor getLN() {
         return LN;
     }
