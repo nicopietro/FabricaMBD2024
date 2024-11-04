@@ -1,11 +1,11 @@
 package fabrica;
 
 import fabrica.marcas.Grosor;
-import fabrica.posiciones.Posicion;
 import fabrica.marcas.Sentido;
+import fabrica.posiciones.Posicion;
 
-import static fabrica.marcas.Sentido.*;
 import static fabrica.marcas.Grosor.*;
+import static fabrica.marcas.Sentido.*;
 import static fabrica.posiciones.Posicion.*;
 
 public class Cuadro {
@@ -13,7 +13,7 @@ public class Cuadro {
     private Posicion posicion;
     private Grosor LN, LS, LE, LO, FV, FH, FD, FI, TL;
 
-    /// Crea un nuevo cuadro de la pieza vacío.
+    /// Crea un nuevo cuadro de la pieza sin ninguna marca
     public Cuadro(Posicion pos) {
         posicion = pos;
         LN = SinGrosor;
@@ -27,32 +27,33 @@ public class Cuadro {
         TL = SinGrosor;
     }
 
-
+    /// Rota un cuadro, cambiando su posición y la orientación de todas sus marcas
     public void rotar(Sentido sentido) {
         rotarPosicion(sentido);
         rotarMarcas(sentido);
     }
 
-    /// REVISAR!!!!
-    /// Cambiar por setters que para eso los hice -> CAMBIADO YA
+    /// Cambia las orientaciones de las marcas en el cuadro según el sentido de rotación pasado como parámetro.
+    /// Para una lija, por ejemplo, una lija norte pasa a ser una lija este si se gira en sentido horario
+    /// Para la fresadora, independientemente del sentido, una marca vertical pasa a ser horizontal
+    /// y una diagonal izquierda pasa a ser diagonal derecha
+    /// @param sentido Sentido de rotación
     private void rotarMarcas(Sentido sentido) {
         Grosor gAux;
         // Lija
-        if (sentido == Antihorario)
-        {
+        if (sentido == Antihorario) {
             gAux = LN;
             setLN(LE);
             setLE(LS);
             setLS(LO);
             setLO(gAux);
-        }else {
+        } else {
             gAux = LN;
             setLN(LO);
             setLO(LS);
             setLS(LE);
             setLE(gAux);
         }
-        // Independientemente al sentido ?????????
         // Fresadora
         gAux = FV;
         setFV(FH);
@@ -63,7 +64,8 @@ public class Cuadro {
     }
 
 
-    /// REVISAR!!!!
+    /// Cambia la posición de la pieza según el sentido de rotación pasado como parámetro.
+    /// @param sentido Sentido de rotación
     private void rotarPosicion(Sentido sentido) {
         if (sentido == Sentido.Horario)
             switch (posicion) {
@@ -88,46 +90,46 @@ public class Cuadro {
                 case IzCe -> setPosicion(CeIn);
             }
     }
+
+    /// Redefinición del método toString que devuelve una representación de la pieza
+    /// en 27 caracteres con todas sus marcas y grosores
     @Override
-    public String toString(){
-        String resultado = "|";
-        if(getLN()!=SinGrosor) resultado+="LN"+grosorAString(getLN());
-        else resultado+="   ";
-        if(getLE()!=SinGrosor) resultado+="LE"+grosorAString(getLE());
-        else resultado+="   ";
-        if(getLS()!=SinGrosor) resultado+="LS"+grosorAString(getLS());
-        else resultado+="   ";
-        if(getLO()!=SinGrosor) resultado+="LO"+grosorAString(getLO());
-        else resultado+="   ";
-        if(getFV()!=SinGrosor) resultado+="FV"+grosorAString(getFV());
-        else resultado+="   ";
-        if(getFH()!=SinGrosor) resultado+="FH"+grosorAString(getFH());
-        else resultado+="   ";
-        if(getFI()!=SinGrosor) resultado+="FI"+grosorAString(getFI());
-        else resultado+="   ";
-        if(getFD()!=SinGrosor) resultado+="FD"+grosorAString(getFD());
-        else resultado+="   ";
-        if(getTL()!=SinGrosor) resultado+="TL"+grosorAString(getTL());
-        else resultado+="   ";
-        return resultado;
+    public String toString() {
+        StringBuilder resultado = new StringBuilder();
+        if (getLN() != SinGrosor) resultado.append("LN").append(grosorAString(getLN()));
+        else resultado.append("   ");
+        if (getLE() != SinGrosor) resultado.append("LE").append(grosorAString(getLE()));
+        else resultado.append("   ");
+        if (getLS() != SinGrosor) resultado.append("LS").append(grosorAString(getLS()));
+        else resultado.append("   ");
+        if (getLO() != SinGrosor) resultado.append("LO").append(grosorAString(getLO()));
+        else resultado.append("   ");
+        if (getFV() != SinGrosor) resultado.append("FV").append(grosorAString(getFV()));
+        else resultado.append("   ");
+        if (getFH() != SinGrosor) resultado.append("FH").append(grosorAString(getFH()));
+        else resultado.append("   ");
+        if (getFI() != SinGrosor) resultado.append("FI").append(grosorAString(getFI()));
+        else resultado.append("   ");
+        if (getFD() != SinGrosor) resultado.append("FD").append(grosorAString(getFD()));
+        else resultado.append("   ");
+        if (getTL() != SinGrosor) resultado.append("TL").append(grosorAString(getTL()));
+        else resultado.append("   ");
+        return resultado.toString();
     }
-    public String grosorAString(Grosor g){
-        if (Fino == g)return "1";
-        else if (Medio == g)return "2";
-        else if(Grueso == g)return "3";
+
+    /// Método auxiliar para representar los grosores con enteros
+    private String grosorAString(Grosor g) {
+        if (Fino == g) return "1";
+        else if (Medio == g) return "2";
+        else if (Grueso == g) return "3";
         return "-1";
     }
 
-    // Posicion
+    // Setters
     public void setPosicion(Posicion posicion) {
         this.posicion = posicion;
     }
 
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
-    // Setters
     public void setLN(Grosor LN) {
         this.LN = LN;
     }
@@ -165,39 +167,23 @@ public class Cuadro {
     }
 
     // Getters
-    public Grosor getLN() {
-        return LN;
-    }
+    public Posicion getPosicion() { return posicion; }
 
-    public Grosor getLS() {
-        return LS;
-    }
+    public Grosor getLN() { return LN; }
 
-    public Grosor getLE() {
-        return LE;
-    }
+    public Grosor getLS() { return LS;}
 
-    public Grosor getLO() {
-        return LO;
-    }
+    public Grosor getLE() { return LE; }
 
-    public Grosor getFV() {
-        return FV;
-    }
+    public Grosor getLO() { return LO; }
 
-    public Grosor getFH() {
-        return FH;
-    }
+    public Grosor getFV() { return FV; }
 
-    public Grosor getFD() {
-        return FD;
-    }
+    public Grosor getFH() { return FH; }
 
-    public Grosor getFI() {
-        return FI;
-    }
+    public Grosor getFD() { return FD; }
 
-    public Grosor getTL() {
-        return TL;
-    }
+    public Grosor getFI() { return FI; }
+
+    public Grosor getTL() { return TL; }
 }
