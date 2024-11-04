@@ -28,16 +28,25 @@ public class Taladradora implements Maquina {
     @Override
     public void actua(Pieza pieza) {
         Cuadro c = pieza.getCuadro(posActua);
-        if ((c.getLE() == Fino || c.getLN() == Fino ||
-                c.getLS() == Fino || c.getLO() == Fino)
-                && grosor == Grueso){
-            c.setLS(SinGrosor);
-            c.setLN(SinGrosor);
+        if (c.getLE() == Fino && grosor == Grueso)
             c.setLE(SinGrosor);
+        if (c.getLO() == Fino && grosor == Grueso)
             c.setLO(SinGrosor);
-            c.setTL(grosor);
-        }
-        else if (grosor == Grueso) c.setTL(grosor);
+        if (c.getLN() == Fino && grosor == Grueso)
+            c.setLN(SinGrosor);
+        if (c.getLS() == Fino && grosor == Grueso)
+            c.setLS(SinGrosor);
+
+//        if ((c.getLE() == Fino || c.getLN() == Fino ||
+//                c.getLS() == Fino || c.getLO() == Fino)
+//                && grosor == Grueso){
+//            c.setLS(SinGrosor);
+//            c.setLN(SinGrosor);
+//            c.setLE(SinGrosor);
+//            c.setLO(SinGrosor);
+//            c.setTL(grosor);
+//        }
+        if (grosor == Grueso) c.setTL(grosor);
         else if (grosor == Medio && (c.getLS() == Fino ||
                 c.getLS() == SinGrosor)) c.setTL(grosor);
         else if (grosor == Fino && c.getTL() == SinGrosor) c.setTL(grosor);

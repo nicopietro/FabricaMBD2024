@@ -52,7 +52,7 @@ public class Fabrica {
     /// Crea una fabrica compuesta por maquinas que se generan aleatoriamente
     ///
     /// @param n Es el numero de maquinas que se quiere generar
-    public Fabrica aleatoria(int n) {
+    public static Fabrica aleatoria(int n) {
         Fabrica fabrica = new Fabrica();
 
         for (int i = 0; i < n; i++) {
@@ -66,7 +66,7 @@ public class Fabrica {
     }
 
     ///Crea una maquina aleatoria
-    private Maquina crearMaquinaAleatoria() {
+    private static Maquina crearMaquinaAleatoria() {
         int tipo = alea.nextInt(4);
         return switch (tipo) {
             case 0 -> new Fresadora(generaPosicionAleatoria(),
@@ -83,31 +83,31 @@ public class Fabrica {
     }
 
     /// Genera una posicion valida aleatoria
-    private Posicion generaPosicionAleatoria() {
+    private static Posicion generaPosicionAleatoria() {
         Posicion[] posiciones = {Posicion.IzSu, Posicion.IzCe, Posicion.IzIn, Posicion.CeSu, Posicion.CeCe};
         return posiciones[alea.nextInt(posiciones.length)];
     }
 
     /// Genera un grosor valido aleatorio
-    private Grosor generaGrosorAleatorio() {
+    private static Grosor generaGrosorAleatorio() {
         Grosor[] grosores = {Grosor.Fino, Grosor.Medio, Grosor.Grueso};
         return grosores[alea.nextInt(grosores.length)];
     }
 
     /// Genera una orientacion de la Fresadora valida aleatoria
-    private OrFresa generaOrientacionFresadoraAleatorio() {
+    private static OrFresa generaOrientacionFresadoraAleatorio() {
         OrFresa[] orientacionFresadora = {OrFresa.Diagonal, OrFresa.Vertical};
         return orientacionFresadora[alea.nextInt(orientacionFresadora.length)];
     }
 
     /// Genera una orientacion de la Lijadora aleatoria
-    private OrLija generaOrientacionLijadoraAleatorio() {
-        OrLija[] orientacionLijadora = OrLija.values();
+    private static OrLija generaOrientacionLijadoraAleatorio() {
+        OrLija[] orientacionLijadora = {OrLija.Norte, OrLija.Sur};
         return orientacionLijadora[alea.nextInt(orientacionLijadora.length)];
     }
 
     /// Genera un sentido aleatorio
-    private Sentido generaSentidoAleatorio() {
+    private static Sentido generaSentidoAleatorio() {
         Sentido[] sentidos = Sentido.values();
         return sentidos[alea.nextInt(sentidos.length)];
     }
