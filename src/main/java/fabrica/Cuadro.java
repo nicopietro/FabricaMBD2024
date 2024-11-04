@@ -1,12 +1,12 @@
 package fabrica;
 
 import fabrica.marcas.Grosor;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 import fabrica.marcas.Sentido;
 
 import static fabrica.marcas.Sentido.*;
 import static fabrica.marcas.Grosor.*;
-import static fabrica.marcas.Posicion.*;
+import static fabrica.posiciones.Posicion.*;
 
 public class Cuadro {
 
@@ -38,7 +38,7 @@ public class Cuadro {
     private void rotarMarcas(Sentido sentido) {
         Grosor gAux;
         // Lija
-        if (sentido == Horario)
+        if (sentido == Antihorario)
         {
             gAux = LN;
             setLN(LE);
@@ -93,28 +93,29 @@ public class Cuadro {
         String resultado = "|";
         if(getLN()!=SinGrosor) resultado+="LN"+grosorAString(getLN());
         else resultado+="   ";
-        if(getLE()!=SinGrosor) resultado+="LE"+grosorAString(getLN());
+        if(getLE()!=SinGrosor) resultado+="LE"+grosorAString(getLE());
         else resultado+="   ";
-        if(getLS()!=SinGrosor) resultado+="LS"+grosorAString(getLN());
+        if(getLS()!=SinGrosor) resultado+="LS"+grosorAString(getLS());
         else resultado+="   ";
-        if(getLO()!=SinGrosor) resultado+="LO"+grosorAString(getLN());
+        if(getLO()!=SinGrosor) resultado+="LO"+grosorAString(getLO());
         else resultado+="   ";
-        if(getFV()!=SinGrosor) resultado+="FV"+grosorAString(getLN());
+        if(getFV()!=SinGrosor) resultado+="FV"+grosorAString(getFV());
         else resultado+="   ";
-        if(getFH()!=SinGrosor) resultado+="FH"+grosorAString(getLN());
+        if(getFH()!=SinGrosor) resultado+="FH"+grosorAString(getFH());
         else resultado+="   ";
-        if(getFI()!=SinGrosor) resultado+="FI"+grosorAString(getLN());
+        if(getFI()!=SinGrosor) resultado+="FI"+grosorAString(getFI());
         else resultado+="   ";
-        if(getFD()!=SinGrosor) resultado+="FD"+grosorAString(getLN());
+        if(getFD()!=SinGrosor) resultado+="FD"+grosorAString(getFD());
         else resultado+="   ";
-        if(getTL()!=SinGrosor) resultado+="TL"+grosorAString(getLN());
+        if(getTL()!=SinGrosor) resultado+="TL"+grosorAString(getTL());
         else resultado+="   ";
         return resultado;
     }
     public String grosorAString(Grosor g){
-        if (Grosor.Fino == g)return "1";
-        else if (Grosor.Medio == g)return "2";
-        else return "3";
+        if (Fino == g)return "1";
+        else if (Medio == g)return "2";
+        else if(Grueso == g)return "3";
+        return "-1";
     }
 
     // Posicion

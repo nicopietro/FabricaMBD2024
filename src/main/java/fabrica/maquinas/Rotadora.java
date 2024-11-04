@@ -1,7 +1,7 @@
 package fabrica.maquinas;
 
 import fabrica.*;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 import fabrica.marcas.Sentido;
 
 public class Rotadora implements Maquina {
@@ -18,9 +18,12 @@ public class Rotadora implements Maquina {
     /// @param pieza Pieza sobre la que se quiere actuar.
     @Override
     public void actua(Pieza pieza) {
-        for (Posicion pos : Posicion.values()) {
-            Cuadro c = pieza.getCuadro(pos);
+        for (Cuadro c : pieza.getPieza()) {
             c.rotar(sentido);
         }
+    }
+
+    public Sentido getSentido() {
+        return sentido;
     }
 }

@@ -3,7 +3,7 @@ package fabrica.maquinas;
 import fabrica.*;
 import fabrica.marcas.Grosor;
 import fabrica.marcas.OrFresa;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 
 import java.util.List;
 
@@ -41,16 +41,16 @@ public class Fresadora implements Maquina {
     public void actua(Pieza pieza) {
         Cuadro c = pieza.getCuadro(posActua);
         Grosor g;
-        if (orientacion == Diagonal) {
-            g = c.getFD();
+        if (orientacion == Vertical) {
+            g = c.getFV();
             if(grosor == Grueso) c.setFV(grosor);
-            if(grosor == Medio && (g == Fino || g == Medio)) c.setFV(grosor);
+            if(grosor == Medio && (g == Fino || g == Medio || g == SinGrosor)) c.setFV(grosor);
             if(grosor == Fino && g == SinGrosor) c.setFV(grosor);
         }
         else {
-            g = c.getFV();
+            g = c.getFD();
             if(grosor == Grueso) c.setFD(grosor);
-            if(grosor == Medio && (g == Fino || g == Medio)) c.setFD(grosor);
+            if(grosor == Medio && (g == Fino || g == Medio || g == SinGrosor)) c.setFD(grosor);
             if(grosor == Fino && g == SinGrosor) c.setFD(grosor);
         }
     }

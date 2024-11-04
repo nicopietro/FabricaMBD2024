@@ -1,11 +1,11 @@
 package fabrica.maquinas;
 
 import fabrica.*;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 
 import java.util.List;
 
-import static fabrica.marcas.Posicion.*;
+import static fabrica.posiciones.Posicion.*;
 
 public interface Maquina {
 

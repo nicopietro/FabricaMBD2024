@@ -2,7 +2,7 @@ package fabrica.maquinas;
 
 import fabrica.*;
 import fabrica.marcas.Grosor;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 
 import static fabrica.marcas.Grosor.*;
 
@@ -21,7 +21,7 @@ public class Taladradora implements Maquina {
         posActua = pos;
         grosor = gr;
     }
-    ///Permite acutar con el taladro en la pieza que se quiera
+    ///Permite actuar con el taladro en la pieza que se quiera
     /// Este sobreescribirá cualquier otro taladro de menor grosor y además
     /// si hay lijas Finas y el taladro es Grueso las borrará.
     /// @param pieza Pieza sobre la que se quiere taladrar.

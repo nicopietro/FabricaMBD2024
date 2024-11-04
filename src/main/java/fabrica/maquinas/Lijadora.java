@@ -3,7 +3,7 @@ package fabrica.maquinas;
 import fabrica.*;
 import fabrica.marcas.Grosor;
 import fabrica.marcas.OrLija;
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 
 import java.util.List;
 
@@ -43,12 +43,12 @@ public class Lijadora  implements Maquina {
         if(orientacion == Norte){
             g = c.getLN();
             if(grosor == Grueso) c.setLN(grosor);
-            if(grosor == Medio && (g == Fino || g == Medio)) c.setLN(grosor);
+            if(grosor == Medio && (g == Fino || g == Medio || g == SinGrosor)) c.setLN(grosor);
             if(grosor == Fino && g == SinGrosor) c.setLN(grosor);
         }else{
             g = c.getLS();
             if(grosor == Grueso) c.setLS(grosor);
-            if(grosor == Medio && (g == Fino || g == Medio)) c.setLS(grosor);
+            if(grosor == Medio && (g == Fino || g == Medio || g == SinGrosor)) c.setLS(grosor);
             if(grosor == Fino && g == SinGrosor) c.setLS(grosor);
         }
     }

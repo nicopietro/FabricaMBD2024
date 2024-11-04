@@ -1,4 +1,4 @@
-package fabrica.marcas;
+package fabrica.posiciones;
 
 public enum Posicion {
     IzSu, CeSu, DeSu,

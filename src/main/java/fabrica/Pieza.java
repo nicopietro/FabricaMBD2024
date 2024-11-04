@@ -1,6 +1,6 @@
 package fabrica;
 
-import fabrica.marcas.Posicion;
+import fabrica.posiciones.Posicion;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,7 +21,7 @@ public class Pieza {
         Iterator<Cuadro> iterator = pieza.iterator();
         while (iterator.hasNext()) {
             Cuadro c = iterator.next();
-            if (c.getPosicion().equals(pos)) return c;
+            if (c.getPosicion()==pos) return c;
         }
         throw new RuntimeException("No se encontró ningún cuadro");
     }
@@ -34,4 +34,7 @@ public class Pieza {
         return string;
     }
 
+    public List<Cuadro> getPieza() {
+        return pieza;
+    }
 }
