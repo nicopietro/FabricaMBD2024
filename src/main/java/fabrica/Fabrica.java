@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Fabrica {
-    // Random para el metodo Fabrica aleatoria()
     private List<Maquina> maquinas;
     private Pieza pieza;
     private static Random alea = new Random();
@@ -38,9 +37,10 @@ public class Fabrica {
 //        maquinas.add(new Fresadora(Posicion.IzSu,OrFresa.Diagonal, Grosor.Grueso));
     }
 
+    //REVISAR, se ha cambiado el agrega
     public Fabrica(List<Maquina> maquinas) {
         pieza = new Pieza();
-        for (Maquina m: maquinas){
+        for (Maquina m : maquinas) {
             this.agrega(m);
         }
     }
@@ -49,62 +49,67 @@ public class Fabrica {
         return maquinas;
     }
 
+    /// Crea una fabrica compuesta por maquinas que se generan aleatoriamente
+    ///
+    /// @param n Es el numero de maquinas que se quiere generar
     public Fabrica aleatoria(int n) {
         Fabrica fabrica = new Fabrica();
 
         for (int i = 0; i < n; i++) {
             Maquina nuevaMaquina;
-            Posicion pos = generaPosicionAleatoria();
 
-            int tipo = alea.nextInt(4);
-
-            switch (tipo) {
-                case 0:
-                    nuevaMaquina = new Fresadora(generaPosicionAleatoria(),
-                            generaOrientacionFresadoraAleatorio(),
-                            generaGrosorAleatorio());
-                    break;
-                case 1:
-                    nuevaMaquina = new Lijadora(generaPosicionAleatoria(),
-                            generaOrientacionLijadoraAleatorio(),
-                            generaGrosorAleatorio());
-                    break;
-                case 2:
-                    nuevaMaquina = new Taladradora(generaPosicionAleatoria(),
-                            generaGrosorAleatorio());
-                    break;
-                case 3:
-                    nuevaMaquina = new Rotadora(generaSentidoAleatorio());
-                    break;
-                default: nuevaMaquina = null;
-            }
-
-
-            if (nuevaMaquina != null)
-                fabrica.agrega(nuevaMaquina);
-
+            do {
+                nuevaMaquina = crearMaquinaAleatoria();
+                } while(!fabrica.agrega(nuevaMaquina));
         }
         return fabrica;
     }
 
-    private Posicion generaPosicionAleatoria(){
-        return null;
+    ///Crea una maquina aleatoria
+    private Maquina crearMaquinaAleatoria() {
+        int tipo = alea.nextInt(4);
+        return switch (tipo) {
+            case 0 -> new Fresadora(generaPosicionAleatoria(),
+                    generaOrientacionFresadoraAleatorio(),
+                    generaGrosorAleatorio());
+            case 1 -> new Lijadora(generaPosicionAleatoria(),
+                    generaOrientacionLijadoraAleatorio(),
+                    generaGrosorAleatorio());
+            case 2 -> new Taladradora(generaPosicionAleatoria(),
+                    generaGrosorAleatorio());
+            case 3 -> new Rotadora(generaSentidoAleatorio());
+            default -> throw new IllegalArgumentException("Tipo de maquina no valido");
+        };
     }
 
-    private Grosor generaGrosorAleatorio(){
-        return null;
+    /// Genera una posicion valida aleatoria
+    private Posicion generaPosicionAleatoria() {
+        Posicion[] posiciones = {Posicion.IzSu, Posicion.IzCe, Posicion.IzIn, Posicion.CeSu, Posicion.CeCe};
+        return posiciones[alea.nextInt(posiciones.length)];
     }
 
-    private OrFresa generaOrientacionFresadoraAleatorio(){
-        return null;
+    /// Genera un grosor valido aleatorio
+    private Grosor generaGrosorAleatorio() {
+        Grosor[] grosores = {Grosor.Fino, Grosor.Medio, Grosor.Grueso};
+        return grosores[alea.nextInt(grosores.length)];
     }
 
-    private OrLija generaOrientacionLijadoraAleatorio(){
-        return null;
+    /// Genera una orientacion de la Fresadora valida aleatoria
+    private OrFresa generaOrientacionFresadoraAleatorio() {
+        OrFresa[] orientacionFresadora = {OrFresa.Diagonal, OrFresa.Vertical};
+        return orientacionFresadora[alea.nextInt(orientacionFresadora.length)];
     }
 
-    private Sentido generaSentidoAleatorio(){
-        return null;
+    /// Genera una orientacion de la Lijadora aleatoria
+    private OrLija generaOrientacionLijadoraAleatorio() {
+        OrLija[] orientacionLijadora = OrLija.values();
+        return orientacionLijadora[alea.nextInt(orientacionLijadora.length)];
+    }
+
+    /// Genera un sentido aleatorio
+    private Sentido generaSentidoAleatorio() {
+        Sentido[] sentidos = Sentido.values();
+        return sentidos[alea.nextInt(sentidos.length)];
     }
 
     /// Cada fabrica.maquina actua en el orden de la lista en la pieza
@@ -113,8 +118,9 @@ public class Fabrica {
             m.actua(pieza);
         }
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return pieza.toString();
     }
 
@@ -123,7 +129,8 @@ public class Fabrica {
     /// ya que no influye tampoco permite agregar dos rotadoras en sentidos contrarios
     ///
     /// @param m Máquina que se quiere añadir
-    public void agrega(Maquina m){
+    /* public void agrega(Maquina m){
+
         if (!(maquinas.isEmpty() && m instanceof Rotadora)){
             if (maquinas.isEmpty())
                 maquinas.add(m);
@@ -132,5 +139,19 @@ public class Fabrica {
                     maquinas.add(m);
             }else maquinas.add(m);
         }
+    } */
+    public boolean agrega(Maquina m) {
+        boolean agregar = true;
+
+        if ((maquinas.isEmpty() && m instanceof Rotadora))
+            agregar = false;
+
+        if ((maquinas.get(maquinas.size() - 1) instanceof Rotadora) &&
+                (m instanceof Rotadora) &&
+                (((Rotadora) maquinas.get(maquinas.size() - 1)).getSentido() == ((Rotadora) m).getSentido()))
+            agregar = false;
+
+        return agregar;
     }
+
 }
