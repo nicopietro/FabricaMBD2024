@@ -138,20 +138,20 @@ public class Fabrica {
                 if (((Rotadora) maquinas.get(maquinas.size()-1)).getSentido() == ((Rotadora) m).getSentido())
                     maquinas.add(m);
             }else maquinas.add(m);
-        }
-    } */
+        } */
     public boolean agrega(Maquina m) {
-        boolean agregar = true;
 
         if ((maquinas.isEmpty() && m instanceof Rotadora))
-            agregar = false;
+            return false;
 
-        if ((maquinas.get(maquinas.size() - 1) instanceof Rotadora) &&
+        if (!maquinas.isEmpty() &&
+                (maquinas.get(maquinas.size() - 1) instanceof Rotadora) &&
                 (m instanceof Rotadora) &&
-                (((Rotadora) maquinas.get(maquinas.size() - 1)).getSentido() == ((Rotadora) m).getSentido()))
-            agregar = false;
+                !(((Rotadora) maquinas.get(maquinas.size() - 1)).getSentido() == ((Rotadora) m).getSentido()))
+            return false;
 
-        return agregar;
+        maquinas.add(m);
+        return true;
     }
 
 }
