@@ -34,9 +34,9 @@ public class Pieza {
     @Override
     public String toString(){
         return
-            "|" + getCuadro(Posicion.IzSu).toString() + getCuadro(Posicion.CeSu) + getCuadro(Posicion.DeSu) + "|\n"
-                + getCuadro(Posicion.IzCe).toString() + getCuadro(Posicion.CeCe) + getCuadro(Posicion.DeCe) + "|\n"
-                + getCuadro(Posicion.IzIn).toString() + getCuadro(Posicion.CeIn) + getCuadro(Posicion.DeIn) + "|";
+            "|" + getCuadro(Posicion.IzSu).toString() + "|" + getCuadro(Posicion.CeSu) + "|" + getCuadro(Posicion.DeSu) + "|\n" +
+            "|" + getCuadro(Posicion.IzCe).toString() + "|" + getCuadro(Posicion.CeCe) + "|" + getCuadro(Posicion.DeCe) + "|\n" +
+            "|" + getCuadro(Posicion.IzIn).toString() + "|" + getCuadro(Posicion.CeIn) + "|" + getCuadro(Posicion.DeIn) + "|";
     }
 
     public List<Cuadro> getPieza() {

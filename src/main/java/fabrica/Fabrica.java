@@ -9,35 +9,19 @@ import java.util.List;
 import java.util.Random;
 
 public class Fabrica {
+
+    private static Random alea = new Random();
     private List<Maquina> maquinas;
     private Pieza pieza;
-    private static Random alea = new Random();
 
-    /// Lista del ejemplo - Si la quieren sacar por favor comentar ya que se puede reutilizar en el main!
+    /// Crea un objeto de la clase Fabrica con una lista de máquinas vacia y una pieza sin marcas.
     public Fabrica() {
         pieza = new Pieza();
         maquinas = new ArrayList<>();
-//        maquinas.add(new Fresadora(Posicion.IzSu, OrFresa.Vertical, Grosor.Medio));
-//        maquinas.add(new Fresadora(Posicion.IzCe, OrFresa.Diagonal, Grosor.Medio));
-//        maquinas.add(new Fresadora(Posicion.IzIn, OrFresa.Vertical,Grosor.Medio));
-//        maquinas.add(new Rotadora(Sentido.Antihorario));
-//        maquinas.add(new Lijadora(Posicion.CeSu, OrLija.Norte,Grosor.Fino));
-//        maquinas.add(new Fresadora(Posicion.CeSu,OrFresa.Diagonal, Grosor.Grueso));
-//        maquinas.add(new Rotadora(Sentido.Antihorario));
-//        maquinas.add(new Fresadora(Posicion.CeCe, OrFresa.Diagonal,Grosor.Medio));
-//        maquinas.add(new Taladradora(Posicion.IzCe,Grosor.Medio));
-//        maquinas.add(new Rotadora(Sentido.Antihorario));
-//        maquinas.add(new Fresadora(Posicion.CeSu, OrFresa.Vertical, Grosor.Fino));
-//        maquinas.add(new Fresadora(Posicion.IzIn, OrFresa.Vertical, Grosor.Medio));
-//        maquinas.add(new Rotadora(Sentido.Horario));
-//        maquinas.add(new Lijadora(Posicion.IzCe, OrLija.Sur,Grosor.Grueso));
-//        maquinas.add(new Fresadora(Posicion.CeCe, OrFresa.Diagonal, Grosor.Fino));
-//        maquinas.add(new Lijadora(Posicion.IzSu, OrLija.Norte,Grosor.Medio));
-//        maquinas.add(new Fresadora(Posicion.IzCe, OrFresa.Vertical, Grosor.Medio));
-//        maquinas.add(new Fresadora(Posicion.IzSu,OrFresa.Diagonal, Grosor.Grueso));
     }
 
-    //REVISAR, se ha cambiado el agrega
+    /// Crea un objeto de la clase Fabrica a partir de una lista de Máquinas.
+    /// @param maquinas Lista de maquinas que compondrá la fabrica.
     public Fabrica(List<Maquina> maquinas) {
         pieza = new Pieza();
         for (Maquina m : maquinas) {
@@ -45,22 +29,20 @@ public class Fabrica {
         }
     }
 
+    /// @return Lista de maquinas contenidas en la fabrica
     public List<Maquina> maquinas() {
         return maquinas;
     }
 
     /// Crea una fabrica compuesta por maquinas que se generan aleatoriamente
-    ///
-    /// @param n Es el numero de maquinas que se quiere generar
+    /// @param n Cantidad de maquinas que se incluran en la fabrica.
     public static Fabrica aleatoria(int n) {
         Fabrica fabrica = new Fabrica();
-
         for (int i = 0; i < n; i++) {
             Maquina nuevaMaquina;
-
             do {
                 nuevaMaquina = crearMaquinaAleatoria();
-                } while(!fabrica.agrega(nuevaMaquina));
+                } while (!fabrica.agrega(nuevaMaquina));
         }
         return fabrica;
     }
@@ -82,37 +64,37 @@ public class Fabrica {
         };
     }
 
-    /// Genera una posicion valida aleatoria
+    /// Devuelve una posicion aleatoria válida.
     private static Posicion generaPosicionAleatoria() {
         Posicion[] posiciones = {Posicion.IzSu, Posicion.IzCe, Posicion.IzIn, Posicion.CeSu, Posicion.CeCe};
         return posiciones[alea.nextInt(posiciones.length)];
     }
 
-    /// Genera un grosor valido aleatorio
+    /// Devuelve un grosor aleatorio válida.
     private static Grosor generaGrosorAleatorio() {
         Grosor[] grosores = {Grosor.Fino, Grosor.Medio, Grosor.Grueso};
         return grosores[alea.nextInt(grosores.length)];
     }
 
-    /// Genera una orientacion de la Fresadora valida aleatoria
+    /// Devuelve una orientacion aleatoria válida para la Fresadora.
     private static OrFresa generaOrientacionFresadoraAleatorio() {
         OrFresa[] orientacionFresadora = {OrFresa.Diagonal, OrFresa.Vertical};
         return orientacionFresadora[alea.nextInt(orientacionFresadora.length)];
     }
 
-    /// Genera una orientacion de la Lijadora aleatoria
+    /// Devuelve una orientacion aleatoria válida para la Lijadora.
     private static OrLija generaOrientacionLijadoraAleatorio() {
         OrLija[] orientacionLijadora = {OrLija.Norte, OrLija.Sur};
         return orientacionLijadora[alea.nextInt(orientacionLijadora.length)];
     }
 
-    /// Genera un sentido aleatorio
+    /// Devuelve un sentido de giro aleatoria válido para la Rotadora.
     private static Sentido generaSentidoAleatorio() {
         Sentido[] sentidos = Sentido.values();
         return sentidos[alea.nextInt(sentidos.length)];
     }
 
-    /// Cada fabrica.maquina actua en el orden de la lista en la pieza
+    /// Cada máquina incluida en la fabrica actua en el orden en que se encuentra en la lista de máquinas.
     public void ejecutar() {
         for (Maquina m : maquinas) {
             m.actua(pieza);
@@ -124,32 +106,20 @@ public class Fabrica {
         return pieza.toString();
     }
 
-
-    /// Permite agregar una máquina a la fábrica si es una rotadora al principio no la agrega
-    /// ya que no influye tampoco permite agregar dos rotadoras en sentidos contrarios
-    ///
+    /// Verifica si una maquina es válida para ser agregada a la fabrica
+    /// Se considera que una máquina no es válida si:
+    /// - La primer máquina de la lista es una rotadora
+    /// - Si se intenta agregar una rotadora, pero la máquina anterior también es una rotadora pero con sentido contrario.
     /// @param m Máquina que se quiere añadir
-    /* public void agrega(Maquina m){
-
-        if (!(maquinas.isEmpty() && m instanceof Rotadora)){
-            if (maquinas.isEmpty())
-                maquinas.add(m);
-            else if(maquinas.get(maquinas.size()-1) instanceof Rotadora  && m instanceof Rotadora){
-                if (((Rotadora) maquinas.get(maquinas.size()-1)).getSentido() == ((Rotadora) m).getSentido())
-                    maquinas.add(m);
-            }else maquinas.add(m);
-        } */
+    /// @return {@code true} si la máquina es válida para ser añadida,
+    /// `false` si la máquina no cumple con los criterios de válidez.
     public boolean agrega(Maquina m) {
-
-        if ((maquinas.isEmpty() && m instanceof Rotadora))
-            return false;
-
-        if (!maquinas.isEmpty() &&
-                (maquinas.get(maquinas.size() - 1) instanceof Rotadora) &&
-                (m instanceof Rotadora) &&
-                !(((Rotadora) maquinas.get(maquinas.size() - 1)).getSentido() == ((Rotadora) m).getSentido()))
-            return false;
-
+        if (m instanceof Rotadora)
+            if (maquinas.isEmpty())
+                return false;
+            else if ((maquinas.getLast() instanceof Rotadora)
+                    && !(((Rotadora) maquinas.getLast()).getSentido() == ((Rotadora) m).getSentido()))
+                return false;
         maquinas.add(m);
         return true;
     }

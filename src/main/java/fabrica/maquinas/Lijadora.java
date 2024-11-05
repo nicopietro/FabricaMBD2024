@@ -37,6 +37,7 @@ public class Lijadora  implements Maquina {
     private boolean orientacionValida(OrLija ol) { return List.of(Norte, Sur).contains(ol); }
 
     /// Permite actuar con la lijadora en la pieza que se quiera.
+    /// Ninguna lija fina puede crearse si ya existe un taladro grueso aplicado.
     /// @param pieza Pieza sobre la que se quiere actuar.
     @Override
     public void actua(Pieza pieza) {
@@ -44,19 +45,19 @@ public class Lijadora  implements Maquina {
         Grosor g;
         if (orientacion == Norte) {
             g = c.getLN();
-            if(grosor == Grueso)
+            if (grosor == Grueso)
                 c.setLN(grosor);
-            if(grosor == Medio && (g == Fino || g == SinGrosor))
+            if (grosor == Medio && (g == Fino || g == SinGrosor))
                 c.setLN(grosor);
-            if(grosor == Fino && g == SinGrosor)
+            if (grosor == Fino && g == SinGrosor && !(c.getTL() == Grueso))
                 c.setLN(grosor);
         } else {
             g = c.getLS();
-            if(grosor == Grueso)
+            if (grosor == Grueso)
                 c.setLS(grosor);
-            if(grosor == Medio && (g == Fino || g == SinGrosor))
+            if (grosor == Medio && (g == Fino || g == SinGrosor))
                 c.setLS(grosor);
-            if(grosor == Fino && g == SinGrosor)
+            if (grosor == Fino && g == SinGrosor && !(c.getTL() == Grueso))
                 c.setLS(grosor);
         }
     }

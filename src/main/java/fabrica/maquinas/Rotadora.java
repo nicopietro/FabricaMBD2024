@@ -22,4 +22,7 @@ public class Rotadora implements Maquina {
             c.rotar(sentido);
         }
     }
+
+    /// Devuelve el sentido de rotación que tiene asignado la rotadora.
+    public Sentido getSentido() { return sentido; }
 }

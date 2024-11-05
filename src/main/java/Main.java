@@ -29,7 +29,12 @@ public class Main {
         f.agrega(new Lijadora(Posicion.IzSu, OrLija.Norte.Sur,Grosor.Medio));
         f.agrega(new Fresadora(Posicion.IzCe, OrFresa.Vertical, Grosor.Medio));
         f.agrega(new Fresadora(Posicion.IzSu,OrFresa.Diagonal, Grosor.Grueso));
-
+/*
+        System.out.println(f);
+        System.out.println(f.maquinas());
+        f.ejecutar();
+        System.out.println(f);
+*/
         Pieza p = new Pieza();
         Gui gui = new Gui(f, p);
         gui.muestra();
