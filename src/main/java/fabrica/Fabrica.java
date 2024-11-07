@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Fabrica {
 
     private static Random alea = new Random();
@@ -29,12 +37,12 @@ public class Fabrica {
         }
     }
 
-    /// @return Lista de maquinas contenidas en la fabrica
+    /// @return Lista de maquinas contenidas en la fabrica.
     public List<Maquina> maquinas() {
         return maquinas;
     }
 
-    /// Crea una fabrica compuesta por maquinas que se generan aleatoriamente
+    /// Crea una fabrica compuesta por maquinas que se generan aleatoriamente.
     /// @param n Cantidad de maquinas que se incluran en la fabrica.
     public static Fabrica aleatoria(int n) {
         Fabrica fabrica = new Fabrica();
@@ -47,7 +55,7 @@ public class Fabrica {
         return fabrica;
     }
 
-    ///Crea una maquina aleatoria
+    ///Crea una maquina aleatoria.
     private static Maquina crearMaquinaAleatoria() {
         int tipo = alea.nextInt(4);
         return switch (tipo) {
@@ -106,11 +114,11 @@ public class Fabrica {
         return pieza.toString();
     }
 
-    /// Verifica si una maquina es válida para ser agregada a la fabrica
+    /// Verifica si una maquina es válida para ser agregada a la fabrica.
     /// Se considera que una máquina no es válida si:
     /// - La primer máquina de la lista es una rotadora
     /// - Si se intenta agregar una rotadora, pero la máquina anterior también es una rotadora pero con sentido contrario.
-    /// @param m Máquina que se quiere añadir
+    /// @param m Máquina que se quiere añadir.
     /// @return {@code true} si la máquina es válida para ser añadida,
     /// `false` si la máquina no cumple con los criterios de válidez.
     public boolean agrega(Maquina m) {

@@ -8,12 +8,20 @@ import static fabrica.marcas.Grosor.*;
 import static fabrica.marcas.Sentido.*;
 import static fabrica.posiciones.Posicion.*;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Cuadro {
 
     private Posicion posicion;
     private Grosor LN, LS, LE, LO, FV, FH, FD, FI, TL;
 
-    /// Crea un nuevo cuadro de la pieza sin ninguna marca
+    /// Crea un nuevo cuadro de la pieza sin ninguna marca.
     public Cuadro(Posicion pos) {
         posicion = pos;
         LN = SinGrosor;
@@ -27,17 +35,17 @@ public class Cuadro {
         TL = SinGrosor;
     }
 
-    /// Rota un cuadro, cambiando su posición y la orientación de todas sus marcas
+    /// Rota un cuadro, cambiando su posición y la orientación de todas sus marcas.
     public void rotar(Sentido sentido) {
         rotarPosicion(sentido);
         rotarMarcas(sentido);
     }
 
     /// Cambia las orientaciones de las marcas en el cuadro según el sentido de rotación pasado como parámetro.
-    /// Para una lija, por ejemplo, una lija norte pasa a ser una lija este si se gira en sentido horario
+    /// Para una lija, por ejemplo, una lija norte pasa a ser una lija este si se gira en sentido horario.
     /// Para la fresadora, independientemente del sentido, una marca vertical pasa a ser horizontal
-    /// y una diagonal izquierda pasa a ser diagonal derecha
-    /// @param sentido Sentido de rotación
+    /// y una diagonal izquierda pasa a ser diagonal derecha.
+    /// @param sentido Sentido de rotación.
     private void rotarMarcas(Sentido sentido) {
         Grosor gAux;
         // Lija
@@ -65,7 +73,7 @@ public class Cuadro {
 
 
     /// Cambia la posición de la pieza según el sentido de rotación pasado como parámetro.
-    /// @param sentido Sentido de rotación
+    /// @param sentido Sentido de rotación.
     private void rotarPosicion(Sentido sentido) {
         if (sentido == Sentido.Horario)
             switch (posicion) {
@@ -92,7 +100,7 @@ public class Cuadro {
     }
 
     /// Redefinición del método toString que devuelve una representación de la pieza
-    /// en 27 caracteres con todas sus marcas y grosores
+    /// en 27 caracteres con todas sus marcas y grosores.
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();
@@ -117,7 +125,7 @@ public class Cuadro {
         return resultado.toString();
     }
 
-    /// Método auxiliar para representar los grosores con enteros
+    /// Método auxiliar para representar los grosores con enteros.
     private String grosorAString(Grosor g) {
         if (Fino == g) return "1";
         else if (Medio == g) return "2";

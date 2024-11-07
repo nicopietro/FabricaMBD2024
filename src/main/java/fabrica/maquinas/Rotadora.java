@@ -4,6 +4,14 @@ import fabrica.*;
 import fabrica.posiciones.Posicion;
 import fabrica.marcas.Sentido;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Rotadora implements Maquina {
 
     private Sentido sentido;

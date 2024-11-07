@@ -6,6 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Gui {
     JFrame ventana;
     Pieza pieza;

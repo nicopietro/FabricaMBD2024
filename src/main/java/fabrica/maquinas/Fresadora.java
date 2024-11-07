@@ -10,6 +10,14 @@ import java.util.List;
 import static fabrica.marcas.OrFresa.*;
 import static fabrica.marcas.Grosor.*;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Fresadora implements Maquina {
 
     private Posicion posActua;

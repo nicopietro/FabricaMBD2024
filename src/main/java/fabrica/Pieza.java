@@ -6,11 +6,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Nicolás Pietrocola
+ * @author Andrés Amo Caballero
+ * @author Álvaro Cabello Martín
+ * @author Javier Osuna Titos
+ * @version 1.0
+ */
+
 public class Pieza {
 
     private List<Cuadro> pieza;
 
-    /// Crea un objeto de la clase Pieza con 9 cuadros sin ninguna marca
+    /// Crea un objeto de la clase Pieza con 9 cuadros sin ninguna marca.
     public Pieza() {
         pieza = new ArrayList<>();
         for (Posicion pos : Posicion.values()) {
@@ -18,8 +26,8 @@ public class Pieza {
         }
     }
 
-    /// Devuelve el cuadro de la posición pasada como parámetro
-    /// @param pos Posición del cuadro que se desea retornar
+    /// Devuelve el cuadro de la posición pasada como parámetro.
+    /// @param pos Posición del cuadro que se desea retornar.
     public Cuadro getCuadro(Posicion pos) {
         Iterator<Cuadro> iterator = pieza.iterator();
         while (iterator.hasNext()) {
@@ -30,7 +38,7 @@ public class Pieza {
     }
 
     /// Redefinición del método toString que devuelve una representación de la pieza
-    /// con sus 9 cuadros y todas las marcas de cada uno
+    /// con sus 9 cuadros y todas las marcas de cada uno.
     @Override
     public String toString(){
         return
